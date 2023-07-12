@@ -1,0 +1,68 @@
+{% extends "employees/base.html" %}
+
+{% block title %}Add Leave{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Add Leave</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="employee">Employee</label>
+                            <select class="form-control" id="employee" name="employee" required>
+                                <option value="">Select Employee</option>
+                                {% for employee in employees %}
+                                    <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select an employee.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" class="form-control" id="start-date" name="start_date" required>
+                            <div class="invalid-feedback">
+                                Please enter a start date.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">End Date</label>
+                            <input type="date" class="form-control" id="end-date" name="end_date" required>
+                            <div class="invalid-feedback">
+                                Please enter an end date.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason</label>
+                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                            <div class="invalid-feedback">
+                                Please provide a reason.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="leave-type">Leave Type</label>
+                            <select class="form-control" id="leave-type" name="leave_type" required>
+                                <option value="">Select Leave Type</option>
+                                <option value="sick_leave">Sick Leave</option>
+                                <option value="vacation">Vacation</option>
+                                <option value="other_leave">Other Leave</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a leave type.
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "employees/base.html" %}
+
+
+{% block content %}
+
+<div style="width: fit-content ;margin-left: 40%;" >
+
+
+
+<h1>Add Employee</h1>
+<form method="POST" action="{% url 'add_employee' %}">
+  {% csrf_token %}
+  <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" required>
+  </div>
+  <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" required>
+  </div>
+  <div class="mb-3">
+      <label for="designation" class="form-label">Designation</label>
+      <input type="text" class="form-control" id="designation" name="designation" required>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Add Employee</button>
+</form>
+</div>
+{% endblock %}

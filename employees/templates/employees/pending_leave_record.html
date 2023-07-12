@@ -1,0 +1,35 @@
+{% extends "employees/base.html" %}
+
+{% block title %}Pending Leave Record{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Pending Leave Record</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Total Duration (Days)</th>
+                                    <th>Remaining Leaves</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pending_leave in pending_leaves %}
+                                    <tr>
+                                        <td>{{ pending_leave.employee.first_name }} {{ pending_leave.employee.last_name }}</td>
+                                        <td>{{ pending_leave.get_total_duration }}</td>
+                                        <td>{{ pending_leave.remaining_leaves }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
